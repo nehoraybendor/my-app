@@ -1,13 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
-import First from './components/first';
-import Second from './components/second';
+import Cars from './component/cars';
 
 function App() {
   return (
     <div className="App">
-     {/* <Second/> */}
-     <First/>
+    
+     <Car/>
     </div>
   );
 }

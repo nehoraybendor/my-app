@@ -15,9 +15,7 @@ const Cars = () => {
             console.log(data)
             setCars(data);
 
-            // const resp = await axios(url)
-            // setCars(resp.data)
-            // this.state.cars = data
+         
         } catch (err) {
             console.log(err.response)
         }
@@ -48,24 +46,6 @@ const Cars = () => {
 
             </div>
 
-
-            {/* {cars.map((item,i)=>
-                (
-                    <p>{item.model}</p>
-                )
-            )} */}
-
-
-
-            {/* {cars[0]?.model ?
-                <div>
-                    <p>{cars[0].model}</p>
-                    <p>{cars[1].model}</p>
-                    <p>{cars[2].model}</p>
-                    <p>{cars[3].model}</p>
-
-                </div>
-                : <p>Loading</p>} */}
         </div>
     )
 }

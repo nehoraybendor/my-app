@@ -17,7 +17,7 @@ export default class First extends Component {
       <div className='p-3'>
         <h1 className='display-6 text-center'>Calc Age of Dog to Human:</h1>
         <div className='col-6 col-md-3'>
-            <label>Dog Age:</label>
+            <label>Dog Age: </label>
             <input ref={this.input} className='form-control' placeholder='Dog Age...' type="number" />
         </div>
         <div className='d-flex'>

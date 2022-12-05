@@ -11,15 +11,19 @@ const Form = () => {
         <form onSubmit={handleSubmit(onSub)} className='col-lg-3 col-md-9 col-8 mt-5 shadow p-3 rounded-5'>
             <label className='mt-2'>Name:</label>
             <input {...register('fullName',{minLength:2,maxLength:20})} className='form-control' type="text" />
-            {errors.fullName && <span className='d-block text-danger'>In</span>}
+            {errors.fullName && <span className='d-block text-danger'>Invalid Full Name....</span>}
             <label className='mt-2'>Email:</label>
             <input {...register('email',{pattern:emailReg})} className='form-control' type="text" />
+            {errors.email && <span className='d-block text-danger'>Invalid Email....</span>}
             <label className='mt-2'>Password:</label>
             <input {...register('password',{minLength:4,maxLength:20})} className='form-control' type="password" />
+            {errors.password && <span className='d-block text-danger'>Invalid Password....</span>}
             <label className='mt-2'>Confirm Password:</label>
             <input {...register('confirmPassword',{required: true, validate: (item)=> getValues('password') === item})} className='form-control' type="password" />
+            {errors.confirmPassword && <span className='d-block text-danger'>Invalid confirmPassword....</span>}
             <label className='mt-2'>Birthdate:</label>
             <input {...register('birthDate',{required:true})} className='form-control text-center' type="date" />
+            {errors.birthDate && <span className='d-block text-danger'>Invalid birthDate....</span>}
             <button className='btn btn-primary mt-3 px-4 py-2'>Sign Up</button>
         </form>
 

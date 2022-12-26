@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 
 const Home = () => {
-  const [ar, setAr] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
+  const [ar] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
   return (
     <div >
       <div>

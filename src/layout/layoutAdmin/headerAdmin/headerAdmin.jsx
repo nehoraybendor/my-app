@@ -1,9 +1,13 @@
 import React from 'react'
 
 
+
 const HeaderAdmin = () => {
-  return (
-    <header>Header Admin</header>
+ 
+    return (
+      <div>
+        <h1>Welcome to admin dashboard!</h1>
+      </div>
     )
 }
 

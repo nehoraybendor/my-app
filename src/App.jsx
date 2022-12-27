@@ -5,7 +5,8 @@ import AppRouters from './routers/appRouters';
 
 
 function App() {
-  const [user,setUser] = useState({name:"nehoray",age:21})
+  const [user,setUser] = useState({name:"nehoray",age:21});
+ 
   return (
     <div >
       <AppContext.Provider value = {(

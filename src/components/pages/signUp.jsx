@@ -1,114 +1,141 @@
+import { LockClosedIcon } from '@heroicons/react/24/outline'
 import React from 'react'
+import { useForm } from 'react-hook-form';
+import { SING_UP_URL } from '../../constant/constant';
+import { apiPost } from '../../services/services';
 // p pl pr pt pb >> m mr ml mt mb
 const SignUp = () => {
+    const { getValues, register, handleSubmit, formState: { errors } } = useForm();
+
+    const emailReg = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
+
+    const signUp = async (_body) => {
+        try{
+        const {data} = await apiPost(SING_UP_URL,_body);
+        console.log(data);
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+
+    const onSub = (data) => {
+        delete data.confirmPassword;
+        console.log(data)
+        signUp(data);
+    }
     return (
-        <div className="mt-10 sm:mt-0 flex justify-center">
-            <div className="md:grid md:grid-cols-3 md:gap-6">
-
-                <div className="mt-5 md:col-span-2 md:mt-0">
-                    <form>
-                        <div className=" sm:px-0">
-                            <h3 className="text-lg font-medium leading-6 text-gray-900">Personal Information</h3>
-                            <p className="mt-1 text-sm text-gray-600">Use a permanent address where you can receive mail.</p>
-                        </div>
-                        <div className="overflow-hidden shadow sm:rounded-md">
-                            <div className="bg-white px-4 py-5 sm:p-6">
-                                <div className="grid grid-cols-6 gap-6">
-                                    <div className="col-span-6 sm:col-span-3">
-                                        <label className="block text-sm font-medium text-gray-700">
-                                            First name
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="h-[37px] pl-[10px] border  mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                        />
-                                    </div>
-
-                                    <div className="col-span-6 sm:col-span-3">
-                                        <label className="block text-sm font-medium text-gray-700">
-                                            Last name
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="h-[37px] pl-[10px] border  mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                        />
-                                    </div>
-
-                                    <div className="col-span-6 sm:col-span-4">
-                                        <label className="block text-sm font-medium text-gray-700">
-                                            Email address
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="h-[37px] pl-[10px] border  mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                        />
-                                    </div>
-
-                                    <div className="col-span-6 sm:col-span-3">
-                                        <label className="block text-sm font-medium text-gray-700">
-                                            Country
-                                        </label>
-                                        <select
-                                            className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                        >
-                                            <option>United States</option>
-                                            <option>Canada</option>
-                                            <option>Mexico</option>
-                                        </select>
-                                    </div>
-
-                                    <div className="col-span-6">
-                                        <label className="block text-sm font-medium text-gray-700">
-                                            Street address
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="h-[37px] pl-[10px] border  mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                        />
-                                    </div>
-
-                                    <div className="col-span-6 sm:col-span-6 lg:col-span-2">
-                                        <label className="block text-sm font-medium text-gray-700">
-                                            City
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="h-[37px] pl-[10px] border  mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                        />
-                                    </div>
-
-                                    <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                                        <label className="block text-sm font-medium text-gray-700">
-                                            State / Province
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="h-[37px] pl-[10px] border  mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                        />
-                                    </div>
-
-                                    <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                                        <label className="block text-sm font-medium text-gray-700">
-                                            ZIP / Postal code
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="h-[37px] pl-[10px] border  mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
-                                <button
-                                    type="submit"
-                                    className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                                >
-                                    Save
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+        <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+            <div className="w-full max-w-md space-y-8">
+                <div>
+                    <img
+                        className="mx-auto h-12 w-auto"
+                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                        alt="Your Company"
+                    />
+                    <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+                        Sign Up
+                    </h2>
+                    <p className="mt-2 text-center text-sm text-gray-600">
+                        Or{' '}
+                        <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                            start your 14-day free trial
+                        </a>
+                    </p>
                 </div>
+                <form onSubmit={handleSubmit(onSub)} className="mt-8 space-y-6" >
+                    <input type="hidden" name="remember" defaultValue="true" />
+                    <div className="-space-y-px rounded-md shadow-sm">
+                        <div >
+                            <label className="sr-only">
+                                FullName
+                            </label>
+                            <input
+                                {...register('name', { required: true, minLength: 2, maxLength: 20 })}
+                                type="text"
+
+                                className="mt-3 relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                placeholder="FullName..."
+                            />
+                            {errors.name && <p className='text-red-600'>Name is required </p>}
+                        </div>
+
+                        <div >
+                            <label className="sr-only">
+                                Email address
+                            </label>
+                            <input
+                                {...register('email', { required: true, pattern: emailReg })}
+                                type="email"
+
+                                className="mt-3 relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                placeholder="Email address"
+                            />
+                            {errors.email && <p className='text-red-600'>email is required </p>}
+                        </div>
+                        <div >
+                            <label className="sr-only">
+                                password
+                            </label>
+                            <input
+                                {...register('password', { required: true, minLength: 3, maxLength: 20 })}
+                                type="password"
+
+                                className="mt-3 relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                placeholder="password.."
+                            />
+                            {errors.password && <p className='text-red-600'>password is required </p>}
+
+                        </div>
+                        <div >
+                            <label className="sr-only">
+                                confirm password...
+                            </label>
+                            <input
+                                {...register('confirmPassword', { required: true, validate: (value) => value == getValues('password') })}
+                                type="password"
+
+                                className="mt-3 relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                placeholder="confirm password....."
+                            />
+                            {errors.confirmPassword && <p className='text-red-600'>password is not match </p>}
+
+                        </div>
+
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                            <input
+                                id="remember-me"
+                                name="remember-me"
+                                type="checkbox"
+                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                            />
+                            <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+                                Remember me
+                            </label>
+                        </div>
+
+                        <div className="text-sm">
+                            <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                                Forgot your password?
+                            </a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button
+                            type="submit"
+                            className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        >
+                            <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+                                <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />
+                            </span>
+                            Sign Up
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
 
